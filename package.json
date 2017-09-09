@@ -1,0 +1,24 @@
+{
+  "name": "people-list-creator",
+  "version": "1.0.0",
+  "description": "Server that creates list of people and corresponding traits.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikep79/people-list-creator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mikep79/people-list-creator/issues"
+  },
+  "homepage": "https://github.com/mikep79/people-list-creator#readme",
+  "dependencies": {
+    "express": "^4.15.4",
+    "jquery": "^3.2.1"
+  }
+}
