@@ -3,7 +3,8 @@ var path = require('path');
 var app = express();
 var port = 5000;
 
-var message = 'response sent by me (server) and received by client (browser)!';
+var message = 'here you go!';
+var arr = [1,2,3,4,5];
 
 app.listen(port, function(){
     console.log('server listening at port: ', port);
@@ -16,7 +17,7 @@ app.get('/', function(req, res){
     res.sendFile(path.join(__dirname, '/public/views/index.html'));
 });
 
-app.get('/saying', function(req, res){              // test get request
+app.get('/saying', function(req, res){              // test get request response
     console.log('request received');
-    res.send(message);    
+    res.send(arr);                                      // send something to client
 });

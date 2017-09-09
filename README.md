@@ -6,7 +6,9 @@ Objectives:
 
 Steps:
 - [x] create file tree
-- [] spin up server
-- [] connect server to client
-- [] detail html file
-- [] code logic ...
+- [x] spin up server
+- [x] connect server to client
+- [x] detail html file
+- [x] send test array using submit button to server.
+- [ ] have client return send something to client.
+- [ ] code logic ...
