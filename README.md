@@ -13,6 +13,10 @@ Steps:
 - [x] have client return send something to client.
 - code logic ...
 - [x] send info from input to server using POST req and console log obj.
-- [ ] grab info from inputs and store as var to send with POST req.
-- [ ] store info from client into server's peopleArray.
-- []  (get req for peopleArray already done).
+- [x] grab info from name input and store as var.
+- [x] send name input to server with POST req.
+- [x] store info from client into server's peopleArray.
+- [x] repeat with 'fact'.
+- [x] Eliminate one button.
+
+Base mode completed.

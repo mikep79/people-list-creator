@@ -1,34 +1,46 @@
 $(document).ready(onReady)
 
-var testObj = 'rick';
-
 function onReady() {
+    $('#addPersonButton').on('click', addPerson);
     $('#addPersonButton').on('click', requestPeopleArray);
-    addTest();
+    requestPeopleArray();
 }
 
-function requestPeopleArray(event) {            // test message - get request to server
-    //event.preventDefault();                  // prevents automatic page refresh
+function requestPeopleArray() {
     $.ajax({
         type: 'GET',
         url: '/people',                     // go to this route
         success: function(res) {
-            console.log('response from server: ' + res);         // log the response
-            $('#testArea').append('<br>' + res);                // append to #testArea
+            appendInfo(res);
         }
     });
 }
 
-function addTest(event){                            // post request TEST
-    //event.preventDefault();
+function appendInfo(peopleArray) {
+    $('#container').empty();                    // clear container
+    $('#nameInput').val('');                    // clear input values
+    $('#factInput').val('');
+    for (var i=0; i<peopleArray.length; i++) {              // (re)append all info to dom
+        $('#container').append('<br>' + peopleArray[i].name + ' - ' + peopleArray[i].fact);
+    }
+}
+
+function addPerson(event) {
+    event.preventDefault();                         // prevent page refresh
+    var personName = $('#nameInput').val();         // grabbing values of inputs
+    var personFact = $('#factInput').val();
+    var personObj = {                                 // storing info into person Obj
+        name: personName,
+        fact: personFact
+    };
+    console.log('Person sent to server: ', personObj);    
     $.ajax({
         type: 'POST',
         url: '/addPerson',
-        data: {                         // post req wraps my data into data obj.
-            name: testObj
-        },                             // must send data in OBJ form.
-        success: function(res) {
-            console.log('retrieved file from server: ' + res);
+        data: personObj,                                       //must send data as obj
+        success: function(res){
+            console.log('response from server: ', res);
         }
-    });
+    })
+    
 }
