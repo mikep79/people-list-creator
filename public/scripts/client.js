@@ -1,12 +1,14 @@
 $(document).ready(onReady)
 
 function onReady() {
-    $('#addPersonButton').on('click', addPerson);
-    $('#addPersonButton').on('click', requestPeopleArray);
-    requestPeopleArray();
+    $('#addPersonButton').on('click', addPerson);               // event listeners
+    $('#addPersonButton').on('click', requestpeopleArray);
+    $('#previous').on('click', showPrevious);
+    $('#next').on('click', showNext);
+    requestpeopleArray();
 }
 
-function requestPeopleArray() {
+function requestpeopleArray() {             // obtain people array from server
     $.ajax({
         type: 'GET',
         url: '/people',                     // go to this route
@@ -16,17 +18,58 @@ function requestPeopleArray() {
     });
 }
 
-function appendInfo(peopleArray) {
+function appendInfo(peopleArray) {              // append people to DOM
     $('#container').empty();                    // clear container
     $('#nameInput').val('');                    // clear input values
     $('#factInput').val('');
     for (var i=0; i<peopleArray.length; i++) {              // (re)append all info to dom
-        $('#container').append('<br>' + peopleArray[i].name + ' - ' + peopleArray[i].fact);
+        $('#container').append('<p class="people">' + peopleArray[i].name + ' - ' + peopleArray[i].fact + '</p>');
+    }
+    slidePosition = peopleArray.length;
+    showAdded();        
+}
+
+var slidePosition = 0;              // var for index of people info array
+
+function showAdded() {                              // show added person
+    var peopleArray = document.getElementsByClassName('people');
+    for (var i=0; i<peopleArray.length; i++) {
+        peopleArray[i].style.display = 'none';
+    }
+    if (slidePosition > 0 ){
+        peopleArray[slidePosition-1].style.display = 'block';
+    };
+    $('#index').text(slidePosition);                    // update index displays
+    $('#total').text(peopleArray.length);
+}
+
+function showPrevious(event) {
+    event.preventDefault();
+    var peopleArray = document.getElementsByClassName('people');
+    if (peopleArray.length > 0) {                   // check if at least 1 person
+        slidePosition--;
+        if (slidePosition === 0) {
+            slidePosition = peopleArray.length;
+        }
+        showAdded();
     }
 }
 
-function addPerson(event) {
+function showNext(event){
+    event.preventDefault();
+    var peopleArray = document.getElementsByClassName('people');
+    if (peopleArray.length > 0){                    // check if at least 1 person
+        slidePosition++;
+        if (slidePosition > peopleArray.length){
+            slidePosition = 1;
+        }
+        showAdded();
+    }
+}
+
+function addPerson(event) {                         
     event.preventDefault();                         // prevent page refresh
+    slidePosition++;
     var personName = $('#nameInput').val();         // grabbing values of inputs
     var personFact = $('#factInput').val();
     var personObj = {                                 // storing info into person Obj
@@ -38,7 +81,7 @@ function addPerson(event) {
         type: 'POST',
         url: '/addPerson',
         data: personObj,                                       //must send data as obj
-        success: function(res){
+        success: function(res){                         // NEEDED?
             console.log('response from server: ', res);
         }
     })

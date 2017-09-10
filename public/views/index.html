@@ -8,6 +8,7 @@
     <title>People List Creator</title>
     <script src="/vendor/jquery-3.2.1.min.js"></script>
     <script src="/scripts/client.js"></script>
+    <link href="/style/stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
@@ -17,8 +18,15 @@
         <input id="factInput" type="text" placeholder="Enter Fact">
         <button id="addPersonButton">Add Person</button>
         <br>
-        <article id='container'>
-        </article> 
+        <article id="container">
+        </article>
+        <article>
+            <button id="previous">Previous</button>
+            <button id="next">Next</button>
+       </article>
+       <span id="index"></span>
+       /
+       <span id="total"></span>
     </form>
 </body>
 
