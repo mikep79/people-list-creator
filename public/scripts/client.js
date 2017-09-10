@@ -1,14 +1,18 @@
 $(document).ready(onReady)
 
+var slidePosition = 0;              // var for index of people info array
+
 function onReady() {
     $('#addPersonButton').on('click', addPerson);               // event listeners
-    $('#addPersonButton').on('click', requestpeopleArray);
+    $('#addPersonButton').on('click', requestPeopleArray);
     $('#previous').on('click', showPrevious);
     $('#next').on('click', showNext);
-    requestpeopleArray();
+    requestPeopleArray();
+    $('#removePersonButton').on('click', removePerson);
+    $('#removePersonButton').on('click', requestPeopleArray);
 }
 
-function requestpeopleArray() {             // obtain people array from server
+function requestPeopleArray() {             // obtain people array from server
     $.ajax({
         type: 'GET',
         url: '/people',                     // go to this route
@@ -28,8 +32,6 @@ function appendInfo(peopleArray) {              // append people to DOM
     slidePosition = peopleArray.length;
     showAdded();        
 }
-
-var slidePosition = 0;              // var for index of people info array
 
 function showAdded() {                              // show added person
     var peopleArray = document.getElementsByClassName('people');
@@ -85,5 +87,16 @@ function addPerson(event) {
         type: 'POST',
         url: '/addPerson',
         data: personObj                                       //must send data as obj
+    });
+}
+
+function removePerson(event) {           // remove person function
+    event.preventDefault();
+    $.ajax({
+        type: 'POST',
+        url: '/remove',
+        data: {
+            remove: slidePosition           // remove currently selected person
+        }
     });
 }
