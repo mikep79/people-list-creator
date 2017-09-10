@@ -21,7 +21,5 @@ Steps:
 
 Base mode completed.
 
-Hard mode steps:
-- [ ] Display all of peopleArray, but hide them by applying a class (visibility: hidden)
-- [ ] Two buttons. One button appends next name in list, other previous. 
-- [ ] Called empty with each button press.
+Hard mode:
+- [x] Completed

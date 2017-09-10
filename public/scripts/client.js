@@ -33,10 +33,10 @@ var slidePosition = 0;              // var for index of people info array
 
 function showAdded() {                              // show added person
     var peopleArray = document.getElementsByClassName('people');
-    for (var i=0; i<peopleArray.length; i++) {
+    for (var i=0; i<peopleArray.length; i++) {              // hide all people
         peopleArray[i].style.display = 'none';
     }
-    if (slidePosition > 0 ){
+    if (slidePosition > 0 ){                                // show current person
         peopleArray[slidePosition-1].style.display = 'block';
     };
     $('#index').text(slidePosition);                    // update index displays
@@ -48,10 +48,10 @@ function showPrevious(event) {
     var peopleArray = document.getElementsByClassName('people');
     if (peopleArray.length > 0) {                   // check if at least 1 person
         slidePosition--;
-        if (slidePosition === 0) {
+        if (slidePosition === 0) {                     // select prev person to show
             slidePosition = peopleArray.length;
         }
-        showAdded();
+        showAdded();                                  // call showAdded to reveal person
     }
 }
 
@@ -60,10 +60,10 @@ function showNext(event){
     var peopleArray = document.getElementsByClassName('people');
     if (peopleArray.length > 0){                    // check if at least 1 person
         slidePosition++;
-        if (slidePosition > peopleArray.length){
+        if (slidePosition > peopleArray.length){        // select next person to show
             slidePosition = 1;
         }
-        showAdded();
+        showAdded();                                // call showAdded to reveal person
     }
 }
 
@@ -72,6 +72,10 @@ function addPerson(event) {
     slidePosition++;
     var personName = $('#nameInput').val();         // grabbing values of inputs
     var personFact = $('#factInput').val();
+    if (personName === '' || personFact === ''){        // check if all user info entered
+        alert('Please enter information for both name and fact.');
+        return;
+    }
     var personObj = {                                 // storing info into person Obj
         name: personName,
         fact: personFact
@@ -80,10 +84,6 @@ function addPerson(event) {
     $.ajax({
         type: 'POST',
         url: '/addPerson',
-        data: personObj,                                       //must send data as obj
-        success: function(res){                         // NEEDED?
-            console.log('response from server: ', res);
-        }
-    })
-    
+        data: personObj                                       //must send data as obj
+    });
 }
