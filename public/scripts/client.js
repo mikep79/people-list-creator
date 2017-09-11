@@ -86,7 +86,10 @@ function addPerson(event) {
     $.ajax({
         type: 'POST',
         url: '/addPerson',
-        data: personObj                                       //must send data as obj
+        data: personObj,                                       //must send data as obj
+        success: function(res) {
+            console.log(res)
+        }
     });
 }
 
@@ -97,6 +100,9 @@ function removePerson(event) {           // remove person function
         url: '/remove',
         data: {
             remove: slidePosition           // remove currently selected person
+        },
+        success: function(res) {
+            console.log(res);            
         }
     });
 }

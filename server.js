@@ -26,6 +26,7 @@ app.get('/people', function(req, res){              // test get request response
 app.post('/addPerson', function(req, res){          // receive data req from client                          
     var personInfo = req.body;                 //.body parses req, stores in var.
     peopleArray.push(personInfo);
+    res.send(200);          // test
     console.log('data received from client: ', personInfo);        // server's log
 });
 
@@ -33,4 +34,5 @@ app.post('/remove', function (req, res){            // receive data from client
     var indexToRemove = req.body.remove;            // parse obj, store index of person to remove
     console.log('Index of person to remove: ', indexToRemove); 
     peopleArray.splice(indexToRemove-1, 1);             // remove person from peopleArray
+    res.send(200);
 }); 
