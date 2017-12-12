@@ -1,25 +1,21 @@
-# people-list-creator
-Server that creates list of people and corresponding traits.
+# People List Creator
+jQuery based app allows user to create a list of people by entering their name and a corresponding trait, and adding them. Data is stored on a server, and the user can cycle through each person and trait using a carousel, and also can remove each person from the list.
 
-Objectives:
+<br>
+<p>
+<img src="images/people-pic1.png" width="350"/>
+</p>
+<br>
+<p>
+<img src="images/people-pic2.png" width="350"/>
+</p>
+<br>
 
+## Built With
+jQuery, JavaScript, HTML, CSS.
 
-Steps:
-- [x] create file tree
-- [x] spin up server
-- [x] connect server to client
-- [x] detail html file
-- [x] send test array using submit button to server.
-- [x] have client return send something to client.
-- code logic ...
-- [x] send info from input to server using POST req and console log obj.
-- [x] grab info from name input and store as var.
-- [x] send name input to server with POST req.
-- [x] store info from client into server's peopleArray.
-- [x] repeat with 'fact'.
-- [x] Eliminate one button.
+### Installing
+Run ```npm install``` in terminal.
 
-Base mode completed.
-
-Hard mode:
-- [x] Completed
+## Author
+* Mike Pettman
