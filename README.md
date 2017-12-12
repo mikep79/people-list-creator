@@ -3,11 +3,11 @@ jQuery based app allows user to create a list of people by entering their name a
 
 <br>
 <p>
-<img src="public/images/people-pic1.png" width="350"/>
+<img src="public/images/people-pic1.png" width="450"/>
 </p>
 <br>
 <p>
-<img src="/images/people-pic2.png" width="350"/>
+<img src="public/images/people-pic2.png" width="450"/>
 </p>
 <br>
 
